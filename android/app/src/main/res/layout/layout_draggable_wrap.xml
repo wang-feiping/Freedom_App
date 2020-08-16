@@ -5,13 +5,13 @@
     android:orientation="vertical">
 
     <!-- 标题栏 -->
-    <com.tuacy.library.SlideHeaderLayout
+    <com.wfp.freedom.slide.SlideHeaderLayout
         android:id="@id/column_draggable_header_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <!-- 列表内容 -->
-    <com.tuacy.library.SlideListView
+    <com.wfp.freedom.slide.SlideListView
         android:id="@id/column_draggable_list_id"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"/>
