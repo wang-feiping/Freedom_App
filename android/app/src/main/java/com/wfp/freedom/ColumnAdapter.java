@@ -67,5 +67,4 @@ public class ColumnAdapter extends SlideBaseAdapter {
 			textView.setText(columnText);
 		}
 	}
-
 }

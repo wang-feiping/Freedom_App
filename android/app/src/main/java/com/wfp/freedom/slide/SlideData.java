@@ -1,14 +1,12 @@
 package com.wfp.freedom.slide;
 
-
 import java.util.List;
 
 public class SlideData {
-
 	/**
 	 * 标题列表
 	 */
-	private List<String>       mTitle;
+	private List<String> mTitle;
 	/**
 	 * list view 要显示的内容
 	 */
