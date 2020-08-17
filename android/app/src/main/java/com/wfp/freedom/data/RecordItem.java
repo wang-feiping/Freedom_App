@@ -10,6 +10,11 @@ import lombok.Data;
 @Data
 public class RecordItem {
     /**
+     * 标的编码
+     */
+    private String code;
+
+    /**
      * 序号
      */
     private int no;
