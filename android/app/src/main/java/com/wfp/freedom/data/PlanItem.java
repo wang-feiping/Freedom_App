@@ -8,6 +8,11 @@ import lombok.Data;
 @Data
 public class PlanItem {
     /**
+     * 标的编码
+     */
+    private String code;
+
+    /**
      * 序号
      */
     private int no;
