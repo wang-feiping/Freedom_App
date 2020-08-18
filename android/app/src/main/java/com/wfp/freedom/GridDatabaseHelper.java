@@ -16,10 +16,12 @@ public class GridDatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "grid.db";
 
+    private Context mContext;
     private DataHelper dataHelper = new DataHelper();
 
     public GridDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        mContext = context;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class GridDatabaseHelper extends SQLiteOpenHelper {
                 "PRIMARY KEY (code, id))";
 
         db.execSQL(createPlanTable);
-        List<ContentValues> datas = dataHelper.initialPlanData("123");
+        List<ContentValues> datas = dataHelper.initialPlanData(mContext, "512800");
         for (ContentValues item : datas) {
             db.insert("plan", null, item);
         }
