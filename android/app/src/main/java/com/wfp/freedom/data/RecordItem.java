@@ -17,7 +17,7 @@ public class RecordItem {
     /**
      * 序号
      */
-    private int no;
+    private int id;
 
     /**
      * 交易日期
