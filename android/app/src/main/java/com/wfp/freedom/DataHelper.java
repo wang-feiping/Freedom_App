@@ -1,6 +1,7 @@
 package com.wfp.freedom;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import com.wfp.freedom.slide.SlideData;
 
@@ -37,23 +38,47 @@ public class DataHelper {
         values2.put("saveCount", 100);
         datas.add(values2);
         return datas;
-
-       /* SlideData data = new SlideData();
-        List<String> title = new ArrayList<>();
-        title.add("序号");
-        title.add("买入价格");
-        title.add("卖出价格");
-        title.add("买入数量");
-        title.add("买入金额");
-        title.add("卖出数量");
-        title.add("卖出金额");
-        title.add("盈利金额");
-        title.add("盈利比例");
-        title.add("留存数量");*/
     }
 
     // 获取指定标的的网格计划表
-    public SlideData getPlanData(String code) {
-        return null;
+    public SlideData getPlanData(Cursor cursor) {
+        if (cursor == null) {
+            return null;
+        }
+
+        SlideData data = new SlideData();
+        {
+            List<String> title = new ArrayList<>();
+            title.add("编码");
+            title.add("序号");
+            title.add("买入价格");
+            title.add("卖出价格");
+            title.add("买入数量");
+            title.add("卖出数量");
+            title.add("盈利金额");
+            title.add("盈利比例");
+            title.add("留存数量");
+            data.setTitle(title);
+        }
+
+        List<List<String>> contents = new ArrayList<>();
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            List<String> temp = new ArrayList<>();
+            temp.add(cursor.getString(0));
+            temp.add(String.valueOf(cursor.getInt(1)));
+            temp.add(String.valueOf(cursor.getDouble(2)));
+            temp.add(String.valueOf(cursor.getDouble(3)));
+            temp.add(String.valueOf(cursor.getInt(4)));
+            temp.add(String.valueOf(cursor.getInt(5)));
+            temp.add(String.valueOf(cursor.getDouble(6)));
+            temp.add(String.valueOf(cursor.getDouble(7)));
+            temp.add(String.valueOf(cursor.getInt(8)));
+            contents.add(temp);
+            cursor.moveToNext();
+        }
+        data.setContent(contents);
+        return data;
     }
 }
