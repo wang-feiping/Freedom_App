@@ -1,0 +1,26 @@
+{
+    "512800" : [
+        {
+            "code" : "512800",
+            "id": 1,
+            "buyPrice" : 1.23,
+            "sellPrice" : 1.29,
+            "buyCount" : 1700,
+            "sellCount" : 1600,
+            "profit" : 104.55,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512800",
+            "id": 2,
+            "buyPrice" : 1.17,
+            "sellPrice" : 1.23,
+            "buyCount" : 1800,
+            "sellCount" : 1700,
+            "profit" : 105.17,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        }
+    ]
+}
