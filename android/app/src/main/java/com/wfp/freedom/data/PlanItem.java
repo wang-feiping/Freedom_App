@@ -15,7 +15,7 @@ public class PlanItem {
     /**
      * 序号
      */
-    private int no;
+    private int id;
 
     /**
      * 买入价格
