@@ -1,42 +1,69 @@
 package com.wfp.freedom;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import com.wfp.freedom.data.PlanItem;
 import com.wfp.freedom.slide.SlideData;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DataHelper {
+    private static final String TAG = "Freedom";
 
-    public List<ContentValues> initialPlanData(String code) {
+    public List<PlanItem> readJson(Context context, String code) {
+        Map<String, List<PlanItem>> item;
+
+        try {
+            InputStream stream = context.getAssets().open("plan.json");
+            InputStreamReader reader = new InputStreamReader(stream);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            StringBuilder buffer = new StringBuilder();
+            String str;
+            while ((str = bufferedReader.readLine()) != null) {
+                buffer.append(str);
+                buffer.append("\n");
+            }
+
+            Log.i(TAG, buffer.toString());
+            item = JSON.parseObject(buffer.toString(),
+                    new TypeReference<LinkedHashMap<String, List<PlanItem>>>(){});
+        } catch (IOException error) {
+            error.printStackTrace();
+            return null;
+        }
+
+        return item.get(code);
+    }
+
+    public List<ContentValues> initialPlanData(Context context, String code) {
         List<ContentValues> datas = new ArrayList<>();
 
-        // 改为从配置文件中读取
-        ContentValues values1 = new ContentValues();
-        values1.put("code", "512800");
-        values1.put("id", 1);
-        values1.put("buyPrice", 1.23);
-        values1.put("sellPrice", 1.29);
-        values1.put("buyCount", 1700);
-        values1.put("sellCount", 1600);
-        values1.put("profit", 104.55);
-        values1.put("profitRation", 0.05);
-        values1.put("saveCount", 100);
-        datas.add(values1);
-
-        ContentValues values2 = new ContentValues();
-        values2.put("code", "512800");
-        values2.put("id", 2);
-        values2.put("buyPrice", 1.17);
-        values2.put("buyCount", 1800);
-        values2.put("sellPrice", 1.23);
-        values2.put("sellCount", 1700);
-        values2.put("profit", 105.17);
-        values2.put("profitRation", 0.05);
-        values2.put("saveCount", 100);
-        datas.add(values2);
+        List<PlanItem> planItems = readJson(context, code);
+        for (PlanItem item : planItems) {
+            ContentValues value = new ContentValues();
+            value.put("code", item.getCode());
+            value.put("id", item.getId());
+            value.put("buyPrice", item.getBuyPrice());
+            value.put("sellPrice", item.getSellPrice());
+            value.put("buyCount", item.getBuyCount());
+            value.put("sellCount", item.getSellCount());
+            value.put("profit", item.getProfit());
+            value.put("profitRation", item.getProfitRation());
+            value.put("saveCount", item.getSaveCount());
+            datas.add(value);
+        }
         return datas;
     }
 
