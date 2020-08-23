@@ -1,0 +1,272 @@
+{
+    "512000" : [
+        {
+            "code" : "512000",
+            "id": 1,
+            "buyPrice" : 1.23,
+            "sellPrice" : 1.29,
+            "buyCount" : 1700,
+            "sellCount" : 1600,
+            "profit" : 104.55,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512000",
+            "id": 2,
+            "buyPrice" : 1.17,
+            "sellPrice" : 1.23,
+            "buyCount" : 1800,
+            "sellCount" : 1700,
+            "profit" : 105.17,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512800",
+            "id": 3,
+            "buyPrice" : 1.11,
+            "sellPrice" : 1.17,
+            "buyCount" : 1800,
+            "sellCount" : 1700,
+            "profit" : 99.91,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512000",
+            "id": 4,
+            "buyPrice" : 1.05,
+            "sellPrice" : 1.11,
+            "buyCount" : 1900,
+            "sellCount" : 1800,
+            "profit" : 100.18,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512000",
+            "id": 5,
+            "buyPrice" : 1.00,
+            "sellPrice" : 1.05,
+            "buyCount" : 2000,
+            "sellCount" : 1900,
+            "profit" : 100.18,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512000",
+            "id": 6,
+            "buyPrice" : 0.95,
+            "sellPrice" : 1.00,
+            "buyCount" : 2200,
+            "sellCount" : 2100,
+            "profit" : 104.69,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512000",
+            "id": 7,
+            "buyPrice" : 0.90,
+            "sellPrice" : 0.95,
+            "buyCount" : 2500,
+            "sellCount" : 2400,
+            "profit" : 113.02,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512000",
+            "id": 8,
+            "buyPrice" : 0.86,
+            "sellPrice" : 0.90,
+            "buyCount" : 2700,
+            "sellCount" : 2600,
+            "profit" : 115.96,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512000",
+            "id": 9,
+            "buyPrice" : 0.82,
+            "sellPrice" : 0.86,
+            "buyCount" : 2900,
+            "sellCount" : 2800,
+            "profit" : 118.32,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512000",
+            "id": 10,
+            "buyPrice" : 0.78,
+            "sellPrice" : 0.81,
+            "buyCount" : 3100,
+            "sellCount" : 3000,
+            "profit" : 120.16,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512000",
+            "id": 11,
+            "buyPrice" : 0.74,
+            "sellPrice" : 0.77,
+            "buyCount" : 3400,
+            "sellCount" : 3300,
+            "profit" : 125.20,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512000",
+            "id": 12,
+            "buyPrice" : 0.70,
+            "sellPrice" : 0.73,
+            "buyCount" : 3700,
+            "sellCount" : 3600,
+            "profit" : 129.43,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        }
+    ],
+    "159920" : [
+        {
+            "code" : "159920",
+            "id": 1,
+            "buyPrice" : 1.530,
+            "sellPrice" : 1.610,
+            "buyCount" : 1300,
+            "sellCount" : 1200,
+            "profit" : 104.00,
+            "profitRation" : 0.0523,
+            "saveCount" : 100
+        },
+        {
+            "code" : "159920",
+            "id": 2,
+            "buyPrice" : 1.460,
+            "sellPrice" : 1.530,
+            "buyCount" : 1400,
+            "sellCount" : 1300,
+            "profit" : 98.00,
+            "profitRation" : 0.0479,
+            "saveCount" : 100
+        },
+        {
+            "code" : "159920",
+            "id": 3,
+            "buyPrice" : 1.388,
+            "sellPrice" : 1.460,
+            "buyCount" : 1500,
+            "sellCount" : 1400,
+            "profit" : 108.00,
+            "profitRation" : 0.0519,
+            "saveCount" : 100
+        },
+        {
+            "code": "159920",
+            "id": 4,
+            "buyPrice": 1.315,
+            "sellPrice": 1.388,
+            "buyCount": 1600,
+            "sellCount": 1500,
+            "profit": 116.8,
+            "profitRation": 0.0555,
+            "saveCount": 100
+        }
+    ],
+    "512980" :[
+        {
+            "code" : "512980",
+            "id": 1,
+            "buyPrice" : 1.016,
+            "sellPrice" : 1.067,
+            "buyCount" : 2000,
+            "sellCount" : 1900,
+            "profit" : 101.6,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512980",
+            "id": 2,
+            "buyPrice" : 0.965,
+            "sellPrice" : 1.013,
+            "buyCount" : 2100,
+            "sellCount" : 2000,
+            "profit" : 101.35,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512980",
+            "id": 3,
+            "buyPrice" : 0.917,
+            "sellPrice" : 0.963,
+            "buyCount" : 2200,
+            "sellCount" : 2100,
+            "profit" : 100.86,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512980",
+            "id": 4,
+            "buyPrice" : 0.871,
+            "sellPrice" : 0.915,
+            "buyCount" : 2300,
+            "sellCount" : 2200,
+            "profit" : 100.18,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512980",
+            "id": 5,
+            "buyPrice" : 0.828,
+            "sellPrice" : 0.869,
+            "buyCount" : 2500,
+            "sellCount" : 2400,
+            "profit" : 103.44,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512980",
+            "id": 6,
+            "buyPrice" : 0.786,
+            "sellPrice" : 0.825,
+            "buyCount" : 2600,
+            "sellCount" : 2500,
+            "profit" : 102.20,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512980",
+            "id": 7,
+            "buyPrice" : 0.747,
+            "sellPrice" : 0.784,
+            "buyCount" : 2700,
+            "sellCount" : 2600,
+            "profit" : 100.83,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        },
+        {
+            "code" : "512980",
+            "id": 7,
+            "buyPrice" : 0.710,
+            "sellPrice" : 0.745,
+            "buyCount" : 2900,
+            "sellCount" : 2800,
+            "profit" : 102.88,
+            "profitRation" : 0.05,
+            "saveCount" : 100
+        }
+    ]
+}

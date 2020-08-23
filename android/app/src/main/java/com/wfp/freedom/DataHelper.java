@@ -76,7 +76,6 @@ public class DataHelper {
         SlideData data = new SlideData();
         {
             List<String> title = new ArrayList<>();
-            title.add("编码");
             title.add("序号");
             title.add("买入价格");
             title.add("卖出价格");
@@ -93,7 +92,6 @@ public class DataHelper {
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             List<String> temp = new ArrayList<>();
-            temp.add(cursor.getString(0));
             temp.add(String.valueOf(cursor.getInt(1)));
             temp.add(String.valueOf(cursor.getDouble(2)));
             temp.add(String.valueOf(cursor.getDouble(3)));
