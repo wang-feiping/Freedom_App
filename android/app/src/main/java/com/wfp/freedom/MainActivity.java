@@ -2,11 +2,13 @@ package com.wfp.freedom;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ComponentName;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
+import android.view.View;
+import android.widget.TextView;
+
+import com.wfp.freedom.slide.SlideData;
+import com.wfp.freedom.slide.SlideWrap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,25 +17,13 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Freedom";
 
-    @BindView(R.id.showPlan)
-    public Button showPlanBt;
+    private DataHelper dataHelper = new DataHelper();
 
-    @BindView(R.id.showRecord)
-    public Button showRecordBt;
+    @BindView(R.id.allPlanTitle)
+    public TextView title;
 
-    @OnClick(R.id.showPlan)
-    public void showPlanClick() {
-        Log.i(TAG, "showPlanClick");
-        Intent intent = new Intent();
-        ComponentName name = new ComponentName("com.wfp.freedom","com.wfp.freedom.PlanActivity");
-        intent.setComponent(name);
-        startActivity(intent);
-    }
-
-    @OnClick(R.id.showRecord)
-    public void showRecordClick() {
-        Log.i(TAG, "showRecordClick");
-    }
+    @BindView(R.id.showAllPlan)
+    public SlideWrap showAllPlanView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +31,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+        initData();
+    }
+
+    private void initData() {
+        title.setText("所有项目");
+
+        SlideData slideData = dataHelper.getAllPlan();
+        showAllPlanView.setAdapter(new ColumnAdapter(this, slideData));
     }
 }

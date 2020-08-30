@@ -41,7 +41,8 @@ public class GridDatabaseHelper extends SQLiteOpenHelper {
                 "PRIMARY KEY (code, id))";
 
         db.execSQL(createPlanTable);
-        List<ContentValues> datas = dataHelper.initialPlanData(mContext, "512800");
+
+        List<ContentValues> datas = dataHelper.initialPlanData(mContext);
         for (ContentValues item : datas) {
             db.insert("plan", null, item);
         }

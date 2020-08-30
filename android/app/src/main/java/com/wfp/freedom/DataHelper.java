@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ import java.util.Map;
 public class DataHelper {
     private static final String TAG = "Freedom";
 
-    public List<PlanItem> readJson(Context context, String code) {
+    public List<PlanItem> readJson(Context context) {
         Map<String, List<PlanItem>> item;
 
         try {
@@ -44,13 +45,17 @@ public class DataHelper {
             return null;
         }
 
-        return item.get(code);
+        List<PlanItem> result = new ArrayList<>();
+        for (Map.Entry<String, List<PlanItem>> entry : item.entrySet()) {
+            result.addAll(entry.getValue());
+        }
+        return result;
     }
 
-    public List<ContentValues> initialPlanData(Context context, String code) {
+    public List<ContentValues> initialPlanData(Context context) {
         List<ContentValues> datas = new ArrayList<>();
 
-        List<PlanItem> planItems = readJson(context, code);
+        List<PlanItem> planItems = readJson(context);
         for (PlanItem item : planItems) {
             ContentValues value = new ContentValues();
             value.put("code", item.getCode());
@@ -103,6 +108,61 @@ public class DataHelper {
             contents.add(temp);
             cursor.moveToNext();
         }
+        data.setContent(contents);
+        return data;
+    }
+
+    public SlideData getAllPlan() {
+        SlideData data = new SlideData();
+        {
+            List<String> title = new ArrayList<>();
+            title.add("名称");
+            title.add("买入资金");
+            title.add("卖出资金");
+            title.add("资金占用");
+            title.add("当前市值");
+            title.add("总盈亏");
+            title.add("收益率");
+            data.setTitle(title);
+        }
+
+        List<List<String>> contents = new ArrayList<>();
+        {
+            List<String> temp = new ArrayList<>();
+            temp.add("券商ETF");
+            temp.add("0");
+            temp.add("0");
+            temp.add("0");
+            temp.add("0");
+            temp.add("0");
+            temp.add("0");
+            contents.add(temp);
+        }
+
+        {
+            List<String> temp = new ArrayList<>();
+            temp.add("恒生ETF");
+            temp.add("0");
+            temp.add("0");
+            temp.add("0");
+            temp.add("0");
+            temp.add("0");
+            temp.add("0");
+            contents.add(temp);
+        }
+
+        {
+            List<String> temp = new ArrayList<>();
+            temp.add("传媒ETF");
+            temp.add("0");
+            temp.add("0");
+            temp.add("0");
+            temp.add("0");
+            temp.add("0");
+            temp.add("0");
+            contents.add(temp);
+        }
+
         data.setContent(contents);
         return data;
     }

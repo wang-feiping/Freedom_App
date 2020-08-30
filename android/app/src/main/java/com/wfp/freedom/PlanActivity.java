@@ -2,9 +2,11 @@ package com.wfp.freedom;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.wfp.freedom.slide.SlideData;
@@ -24,14 +26,19 @@ public class PlanActivity extends AppCompatActivity {
     @BindView(R.id.draggable_list_view)
     public SlideWrap mDraggableView;
 
+    private String code;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan);
         ButterKnife.bind(this);
 
-        mTitleView.setText("证券ETF网格");
-        initData("512800");
+        Intent intent = getIntent();
+        code = intent.getStringExtra("Code");
+
+        mTitleView.setText(code);
+        initData(NameMapToCode.nameCodeMap.get(code));
     }
 
     private void initData(String code) {

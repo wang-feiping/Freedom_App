@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * 既可以左右滑动，有可以上下滑动的ListView
- * ColumnDraggableLayout布局包含两部分，header标题懒,ListView内容
+ * ColumnDraggableLayout布局包含两部分，header标题栏， ListView内容
  */
 public class SlideWrap extends LinearLayout
 	implements SlideBaseAdapter.OnDataChangeListener, SlideListener {
@@ -25,26 +25,31 @@ public class SlideWrap extends LinearLayout
 	 * 头部布局(标题栏)
 	 */
 	private SlideHeaderLayout mHeaderView;
+
 	/**
 	 * list view(内容部分)
 	 */
-	private SlideListView     mListView;
+	private SlideListView mListView;
+
 	/**
 	 * list view adapter
 	 */
-	private SlideBaseAdapter  mAdapter;
+	private SlideBaseAdapter mAdapter;
+
 	/**
 	 * 从哪一列开始可以滑动（一部分列是可滑动的）
 	 */
-	private int               mDraggableColumnStart;
+	private int mDraggableColumnStart;
+
 	/**
 	 * 标题栏的高度
 	 */
-	private int               mTileHeight;
+	private int mTileHeight;
+
 	/**
 	 * 标题内容list的形式
 	 */
-	private List<String>      mTitle;
+	private List<String> mTitle;
 
 	public SlideWrap(Context context) {
 		this(context, null);
@@ -58,7 +63,6 @@ public class SlideWrap extends LinearLayout
 		super(context, attrs, defStyleAttr);
 		initAttrs(context, attrs);
 		initView();
-		initData();
 	}
 
 	private void initView() {
@@ -71,12 +75,8 @@ public class SlideWrap extends LinearLayout
 	private void initAttrs(Context context, AttributeSet attrs) {
 		TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.SlideWrap);
 		mDraggableColumnStart = attributes.getInt(R.styleable.SlideWrap_column_draggable_start, 0);
-		mTileHeight = attributes.getDimensionPixelOffset(R.styleable.SlideWrap_column_title_height, dip2px(getContext(), 32));
+		mTileHeight = attributes.getDimensionPixelOffset(R.styleable.SlideWrap_column_title_height, dip2px(getContext(), 35));
 		attributes.recycle();
-	}
-
-	private void initData() {
-
 	}
 
 	/**
@@ -151,14 +151,11 @@ public class SlideWrap extends LinearLayout
 		params.height = mTileHeight;
 		mHeaderView.setLayoutParams(params);
 		mHeaderView.setVisibility(GONE);
+
 		mListView = (SlideListView) findViewById(R.id.column_draggable_list_id);
 		mListView.addOnSlideListener(this);
 	}
 
-	/**
-	 * 设置
-	 * @param adapter
-	 */
 	public void setAdapter(SlideBaseAdapter adapter) {
 		mAdapter = adapter;
 		if (mAdapter != null) {
@@ -182,7 +179,6 @@ public class SlideWrap extends LinearLayout
 			mHeaderView.setBackgroundColor(color);
 		}
 	}
-
 
 	@Override
 	public void onAdapterDataChange() {

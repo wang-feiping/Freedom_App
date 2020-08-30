@@ -19,38 +19,40 @@ import com.wfp.freedom.R;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * 可以水平或者垂直滑动的ListView
+ */
 public class SlideListView extends ListView implements AbsListView.OnScrollListener {
+	private static final int TYPE_REFRESH_CONTENT_VIEW = 0x100;// 刷新type
+	private static final int TYPE_LOAD_MORE_CONTENT_VIEW = 0x101;// 加载更多type
+	private static final int SNAP_VELOCITY = 500; // 速度
+	private static final int TYPE_SLIDING_NONE = 0;
+	private static final int TYPE_SLIDING_HORIZONTAL = 1;
+	private static final int TYPE_SLIDING_VERTICAL = 2;
 
-	private static final int   TYPE_REFRESH_CONTENT_VIEW   = 0x100;//刷新type
-	private static final int   TYPE_LOAD_MORE_CONTENT_VIEW = 0x101;//加载更多type
-	private static final int   SNAP_VELOCITY               = 500;//速度
-	private static final int   TYPE_SLIDING_NONE           = 0;
-	private static final int   TYPE_SLIDING_HORIZONTAL     = 1;
-	private static final int   TYPE_SLIDING_VERTICAL       = 2;
 	/**
 	 * 拖动阻力系数
 	 */
-	private static final float RESISTANCE_COEFFICIENT      = 0.3f;
+	private static final float RESISTANCE_COEFFICIENT = 0.3f;
 
-	private boolean                            mEnableRefresh;
-	private RefreshHeader                      mRefreshHeader;
-	private boolean                            mEnableLoadMore;
-	private boolean                            mIsLoadingMore;
-	private boolean                            mIsNoMore;
-	private LoadMoreFooter      mLoadMoreFooter;
-	private Scroller            mScroller;
-	private VelocityTracker     mVelocityTracker;
-	private int                 mTouchSlop;
-	private float               mLastMotionDownX;
-	private float               mLastMotionDownY;
-	private float               mLastMotionX;
-	private float               mLastMotionY;
-	private int                 mSlidingMode;
+	private boolean mEnableRefresh;
+	private RefreshHeader mRefreshHeader;
+	private boolean mEnableLoadMore;
+	private boolean mIsLoadingMore;
+	private boolean mIsNoMore;
+	private LoadMoreFooter mLoadMoreFooter;
+	private Scroller mScroller;	// 帮助实现View的平滑滚动效果
+	private VelocityTracker mVelocityTracker;
+	private int mTouchSlop;
+	private float mLastMotionDownX;
+	private float mLastMotionDownY;
+	private float mLastMotionX;
+	private float mLastMotionY;
+	private int mSlidingMode;
 	private List<SlideListener> mSlideListenerList;
-	private DataObserver        mDataObserver;
-	private WrapAdapter         mWrapAdapter;
-	private OnRefreshListener   mRefreshListener;
+	private DataObserver mDataObserver;
+	private WrapAdapter mWrapAdapter;
+	private OnRefreshListener mRefreshListener;
 
 	public SlideListView(Context context) {
 		this(context, null);
@@ -72,7 +74,9 @@ public class SlideListView extends ListView implements AbsListView.OnScrollListe
 		mIsLoadingMore = false;
 		mIsNoMore = false;
 		mSlidingMode = TYPE_SLIDING_NONE;
-		mTouchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();//大于getScaledTouchSlop这个距离时才认为是触发事件
+
+		// 大于getScaledTouchSlop这个距离时才认为是触发事件
+		mTouchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
 		mDataObserver = new DataObserver();
 		mRefreshHeader = new RefreshHeader(getContext());
 		mLoadMoreFooter = new LoadMoreFooter(getContext());
@@ -84,10 +88,11 @@ public class SlideListView extends ListView implements AbsListView.OnScrollListe
 		if (!(adapter instanceof SlideBaseAdapter)) {
 			throw new IllegalArgumentException("adapter should abstract SlideBaseAdapter");
 		}
+
 		addOnSlideListener((SlideBaseAdapter) adapter);
-		mWrapAdapter = new WrapAdapter((SlideBaseAdapter) adapter);//使用内部Adapter包装用户的Adapter
+		mWrapAdapter = new WrapAdapter((SlideBaseAdapter) adapter);// 使用内部Adapter包装用户的Adapter
 		super.setAdapter(mWrapAdapter);
-		adapter.registerDataSetObserver(mDataObserver);//注册Adapter数据监听器
+		adapter.registerDataSetObserver(mDataObserver); // 注册Adapter数据监听器
 		mDataObserver.onChanged();
 	}
 
@@ -98,7 +103,6 @@ public class SlideListView extends ListView implements AbsListView.OnScrollListe
 		}
 		return null;
 	}
-
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
@@ -145,16 +149,6 @@ public class SlideListView extends ListView implements AbsListView.OnScrollListe
 		final float y = ev.getY();
 		switch (action) {
 			case MotionEvent.ACTION_DOWN:
-//				// 首先停止滚动
-//				if (!mScroller.isFinished()) {
-//					mScroller.abortAnimation();
-//				}
-//				mSlidingMode = TYPE_SLIDING_NONE;
-//				handler = false;
-//				mLastMotionX = x;
-//				mLastMotionY = y;
-//				mLastMotionDownX = x;
-//				mLastMotionDownY = y;
 				break;
 			case MotionEvent.ACTION_MOVE:
 				final int xDiff = (int) Math.abs(x - mLastMotionDownX);
@@ -456,7 +450,6 @@ public class SlideListView extends ListView implements AbsListView.OnScrollListe
 
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
 	}
 
 
@@ -509,16 +502,18 @@ public class SlideListView extends ListView implements AbsListView.OnScrollListe
 			} else if (getItemViewType(i) == TYPE_LOAD_MORE_CONTENT_VIEW) {
 				return mLoadMoreFooter;
 			}
-			if (view != null && (view instanceof RefreshHeader || view instanceof LoadMoreFooter)) {
+			if ((view instanceof RefreshHeader || view instanceof LoadMoreFooter)) {
 				view = null;
 			}
-			return mAdapter.getView(mEnableRefresh ? i - 1 : i, view, viewGroup);//其它为自定义Adapter里面的Item类型
+			// 其它为自定义Adapter里面的Item类型
+			return mAdapter.getView(mEnableRefresh ? i - 1 : i, view, viewGroup);
 		}
 	}
 
-	private class DataObserver extends DataSetObserver {//Adapter数据监听器 与 WrapAdapter联动作用
-
-
+	/**
+	 * Adapter数据监听器 与 WrapAdapter联动作用
+	 */
+	private class DataObserver extends DataSetObserver {
 		DataObserver() {
 			super();
 		}

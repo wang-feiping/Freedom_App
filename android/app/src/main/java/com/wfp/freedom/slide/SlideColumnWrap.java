@@ -1,12 +1,10 @@
 package com.wfp.freedom.slide;
 
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
-
 
 /**
  * 可滑动列的布局，横向排列

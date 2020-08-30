@@ -1,6 +1,7 @@
 package com.wfp.freedom.slide;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,26 +14,25 @@ import com.wfp.freedom.R;
 import java.util.List;
 
 public abstract class SlideBaseAdapter extends BaseAdapter implements SlideListener {
-
 	/**
 	 * 数据改变监听
 	 */
 	public interface OnDataChangeListener {
-
 		void onAdapterDataChange();
 	}
 
 	/**
 	 * list view 水平滑动到的位置(getView里面convertView不复用的时候要滑动到制定的位置)
 	 */
-	private   int                  mColumnSlideTo;
-	protected Context              mContext;
-	private   SlideData            mData;
+	private int mColumnSlideTo;
+	protected Context mContext;
+	private SlideData mData;
+
 	/**
 	 * 从哪个column位置开始可以滑动
 	 */
-	protected int                  mSlideColumnStart;
-	private   OnDataChangeListener mOnDataChangeListener;
+	protected int mSlideColumnStart;
+	private OnDataChangeListener mOnDataChangeListener;
 
 	public SlideBaseAdapter(Context context) {
 		this(context, null);
@@ -133,24 +133,35 @@ public abstract class SlideBaseAdapter extends BaseAdapter implements SlideListe
 		List<String> itemData = getItem(position);
 		SlideViewHolder holder;
 		if (convertView == null) {
+			// 创建布局文件
 			convertView = LayoutInflater.from(mContext).inflate(R.layout.item_column_draggable_wrap, parent, false);
-			//设置item高度
+
+			// 设置item高度
 			AbsListView.LayoutParams params = (AbsListView.LayoutParams) convertView.getLayoutParams();
 			params.height = getItemViewHeight();
 			convertView.setLayoutParams(params);
+
 			holder = new SlideViewHolder(convertView, position);
+
+			// 创建不能滑动的LinearLayout
 			LinearLayout fixedLayout = (LinearLayout) convertView.findViewById(R.id.column_draggable_item_fixed_id);
-			SlideColumnWrap slideLayout = (SlideColumnWrap) convertView.findViewById(
-				R.id.column_draggable_item_drag_id);
-			//组合每一行的View,包含两部分，一个是固定的LinearLayout,一个是可滑动的LinearLayout
+
+			// 创建可以滑动的LinearLayout，添加Onclick监听
+			SlideColumnWrap slideLayout = (SlideColumnWrap) convertView.findViewById(R.id.column_draggable_item_drag_id);
+
+			setOnclickListener(slideLayout, itemData);
+
+			//组合每一行的View,包含两部分，一个是固定的LinearLayout, 一个是可滑动的LinearLayout
 			if (itemData != null && !itemData.isEmpty()) {
 				for (int index = 0; index < itemData.size(); index++) {
 					View columnView;
 					if (index < mSlideColumnStart) {
+						// 不可滑动的部分
 						columnView = getFixedColumnView(position, index, itemData.size(), fixedLayout);
 						columnView.setLayoutParams(getColumnWidth(position, index, itemData.size()));
 						fixedLayout.addView(columnView);
 					} else {
+						// 可以滑动
 						columnView = getSlideColumnView(position, index, itemData.size(), slideLayout);
 						columnView.setLayoutParams(getColumnWidth(position, index, itemData.size()));
 						slideLayout.addView(columnView);
@@ -161,17 +172,18 @@ public abstract class SlideBaseAdapter extends BaseAdapter implements SlideListe
 			convertView.setTag(holder);
 		} else {
 			holder = (SlideViewHolder) convertView.getTag();
-			//更新下holder position的位置
+			// 更新下holder position的位置
 			holder.setPosition(position);
 		}
-		//复用的时候不能滑倒指定位置
-		SlideColumnWrap slideLayout = (SlideColumnWrap) holder.getConvertView()
-															  .findViewById(R.id.column_draggable_item_drag_id);
+
+		// 复用的时候不能滑到指定位置
+		SlideColumnWrap slideLayout = (SlideColumnWrap) holder.getConvertView().findViewById(R.id.column_draggable_item_drag_id);
 		slideLayout.scrollTo(mColumnSlideTo, 0);
 
 		if (itemData != null && !itemData.isEmpty()) {
 			for (int index = 0; index < itemData.size(); index++) {
 				if (holder.getColumnView(index) != null) {
+					// 添加数据到每个view上面，子类去实现
 					convertColumnViewData(position, index, holder.getColumnView(index), convertView, itemData.get(index), itemData);
 				}
 			}
@@ -244,4 +256,5 @@ public abstract class SlideBaseAdapter extends BaseAdapter implements SlideListe
 											   String columnData,
 											   List<String> columnDataList);
 
+	public abstract void setOnclickListener(View view, List<String> data);
 }

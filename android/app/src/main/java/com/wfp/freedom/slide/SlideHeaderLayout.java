@@ -10,14 +10,14 @@ import androidx.annotation.Nullable;
 import com.wfp.freedom.R;
 
 /**
- * 标题栏布局，会一直存在在顶部,两部分组成一个是不能滑动的一些列，一个是可滑动的一些列
+ * 标题栏布局，会一直存在在顶部, 两部分组成：一个是不能滑动的一些列，一个是可滑动的一些列。
  */
 public class SlideHeaderLayout extends LinearLayout {
-
 	/**
 	 * 不能滑动的列，显示在左边
 	 */
-	private LinearLayout    mFixedLayout;
+	private LinearLayout mFixedLayout;
+
 	/**
 	 * 可滑动的列，显示在右边
 	 */

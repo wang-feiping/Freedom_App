@@ -1,6 +1,8 @@
 package com.wfp.freedom;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +13,10 @@ import com.wfp.freedom.slide.SlideBaseAdapter;
 import com.wfp.freedom.slide.SlideColumnWrap;
 import com.wfp.freedom.slide.SlideData;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 public class ColumnAdapter extends SlideBaseAdapter {
-
 	public ColumnAdapter(Context context) {
 		super(context);
 	}
@@ -66,5 +68,20 @@ public class ColumnAdapter extends SlideBaseAdapter {
 			TextView textView = (TextView) columnView.findViewById(R.id.text_slide_cell_item);
 			textView.setText(columnText);
 		}
+	}
+
+	@Override
+	public void setOnclickListener(View view, List<String> data) {
+		view.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Log.i("wfp", "ColumnAdapter onClick");
+
+				String code = data.get(0);
+				Intent intent = new Intent(mContext, PlanActivity.class);
+				intent.putExtra("Code", code);
+				mContext.startActivity(intent, null);
+			}
+		});
 	}
 }

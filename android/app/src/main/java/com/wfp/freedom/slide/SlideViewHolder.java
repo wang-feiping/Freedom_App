@@ -7,15 +7,16 @@ import android.view.View;
  * 可以横向滑动的list view的holder
  */
 public class SlideViewHolder {
-
 	/**
 	 * list view item view
 	 */
-	private View              mConvertView = null;
+	private View mConvertView = null;
+
 	/**
 	 * list view item position
 	 */
-	private int               mPosition    = -1;
+	private int mPosition = -1;
+
 	/**
 	 * list view item all column view
 	 */
