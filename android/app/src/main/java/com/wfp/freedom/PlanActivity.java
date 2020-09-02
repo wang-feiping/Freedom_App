@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.wfp.freedom.slide.SlideData;
@@ -48,6 +47,6 @@ public class PlanActivity extends AppCompatActivity {
         String queryPlan = String.format("SELECT * from plan WHERE CODE = %s", code);
         Cursor cursor = db.rawQuery(queryPlan, null);
         SlideData slideData = dataHelper.getPlanData(cursor);
-        mDraggableView.setAdapter(new ColumnAdapter(this, slideData));
+        mDraggableView.setAdapter(new PlanAdapter(this, slideData));
     }
 }

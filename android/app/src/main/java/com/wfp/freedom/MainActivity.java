@@ -3,8 +3,6 @@ package com.wfp.freedom;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.wfp.freedom.slide.SlideData;
@@ -12,7 +10,6 @@ import com.wfp.freedom.slide.SlideWrap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Freedom";
@@ -38,6 +35,6 @@ public class MainActivity extends AppCompatActivity {
         title.setText("所有项目");
 
         SlideData slideData = dataHelper.getAllPlan();
-        showAllPlanView.setAdapter(new ColumnAdapter(this, slideData));
+        showAllPlanView.setAdapter(new MainAdapter(this, slideData));
     }
 }

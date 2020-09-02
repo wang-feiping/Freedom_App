@@ -13,15 +13,14 @@ import com.wfp.freedom.slide.SlideBaseAdapter;
 import com.wfp.freedom.slide.SlideColumnWrap;
 import com.wfp.freedom.slide.SlideData;
 
-import java.lang.ref.WeakReference;
 import java.util.List;
 
-public class ColumnAdapter extends SlideBaseAdapter {
-	public ColumnAdapter(Context context) {
+public class MainAdapter extends SlideBaseAdapter {
+	public MainAdapter(Context context) {
 		super(context);
 	}
 
-	public ColumnAdapter(Context context, SlideData data) {
+	public MainAdapter(Context context, SlideData data) {
 		super(context, data);
 	}
 
@@ -75,8 +74,6 @@ public class ColumnAdapter extends SlideBaseAdapter {
 		view.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.i("wfp", "ColumnAdapter onClick");
-
 				String code = data.get(0);
 				Intent intent = new Intent(mContext, PlanActivity.class);
 				intent.putExtra("Code", code);
