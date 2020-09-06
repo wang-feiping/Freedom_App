@@ -2,7 +2,6 @@ package com.wfp.freedom;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import com.wfp.freedom.slide.SlideData;
 import java.util.List;
 
 public class MainAdapter extends SlideBaseAdapter {
+
 	public MainAdapter(Context context) {
 		super(context);
 	}
