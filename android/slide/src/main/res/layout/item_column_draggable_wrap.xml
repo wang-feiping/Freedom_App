@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal" />
 
-        <com.wfp.freedom.slide.SlideColumnWrap
+        <com.wfp.slide.slide.SlideColumnWrap
             android:id="@id/column_draggable_item_drag_id"
             android:layout_width="0dp"
             android:layout_height="match_parent"

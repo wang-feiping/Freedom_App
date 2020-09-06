@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.wfp.freedom.slide.SlideBaseAdapter;
-import com.wfp.freedom.slide.SlideColumnWrap;
-import com.wfp.freedom.slide.SlideData;
+import com.wfp.slide.slide.SlideBaseAdapter;
+import com.wfp.slide.slide.SlideColumnWrap;
+import com.wfp.slide.slide.SlideData;
 
 import java.util.List;
 

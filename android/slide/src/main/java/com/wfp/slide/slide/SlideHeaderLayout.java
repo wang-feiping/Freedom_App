@@ -1,4 +1,4 @@
-package com.wfp.freedom.slide;
+package com.wfp.slide.slide;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
-import com.wfp.freedom.R;
+import com.wfp.slide.R;
 
 /**
  * 标题栏布局，会一直存在在顶部, 两部分组成：一个是不能滑动的一些列，一个是可滑动的一些列。

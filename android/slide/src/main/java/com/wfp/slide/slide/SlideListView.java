@@ -1,4 +1,4 @@
-package com.wfp.freedom.slide;
+package com.wfp.slide.slide;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -14,7 +14,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Scroller;
 
-import com.wfp.freedom.R;
+import com.wfp.slide.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.wfp.freedom.slide;
+package com.wfp.slide.slide;
 
 import android.content.Context;
 import android.util.AttributeSet;

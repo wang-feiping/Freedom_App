@@ -1,7 +1,6 @@
-package com.wfp.freedom.slide;
+package com.wfp.slide.slide;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,7 @@ import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 
-import com.wfp.freedom.R;
+import com.wfp.slide.R;
 
 import java.util.List;
 

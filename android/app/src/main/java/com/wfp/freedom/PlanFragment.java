@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.wfp.freedom.slide.SlideData;
-import com.wfp.freedom.slide.SlideWrap;
+import com.wfp.slide.slide.SlideData;
+import com.wfp.slide.slide.SlideWrap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

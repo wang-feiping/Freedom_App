@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.wfp.freedom.slide.SlideData;
-import com.wfp.freedom.slide.SlideWrap;
+import com.wfp.slide.slide.SlideData;
+import com.wfp.slide.slide.SlideWrap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,4 +1,4 @@
-package com.wfp.freedom.slide;
+package com.wfp.slide.slide;
 
 
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.wfp.freedom.R;
+import com.wfp.slide.R;
 
 public class LoadMoreFooter extends LinearLayout {
 

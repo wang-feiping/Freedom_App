@@ -8,7 +8,7 @@ import android.util.Log;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.wfp.freedom.data.PlanItem;
-import com.wfp.freedom.slide.SlideData;
+import com.wfp.slide.slide.SlideData;
 
 import java.io.BufferedReader;
 import java.io.IOException;
